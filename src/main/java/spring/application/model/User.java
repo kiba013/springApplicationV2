@@ -28,6 +28,13 @@ public class User {
     public User() {
     }
 
+    public User(String username, String password, String email, int age) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.age = age;
+}
+
     public Long getId() {
         return id;
     }
