@@ -2,11 +2,9 @@ package spring.application.model;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -18,8 +16,12 @@ public class Role implements GrantedAuthority {
 
     private String name;
 
+    @ManyToMany(mappedBy = "roleSet")
+    private Set<User> users;
+
     public Role() {
     }
+
 
     public Role(String name) {
         this.name = name;
@@ -45,6 +47,15 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return name;
     }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
 
     @Override
     public String toString() {

@@ -8,6 +8,10 @@ import spring.application.service.UserService;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class DataLoader {
@@ -23,14 +27,12 @@ public class DataLoader {
 
     @PostConstruct
     public void loadData() throws Exception {
-        roleRepository.save(new Role("ROLE_ADMIN"));
-        roleRepository.save(new Role("ROLE_USER"));
         userService.saveUser(
                 new User("admin", "admin",
-                        "admin@admin.com", 1));
+                        "admin@admin.com", 1, Collections.singleton(roleRepository.save(new Role("ROLE_ADMIN")))));
         userService.saveUser(
                 new User("user", "user",
-                        "admin@admin.com", 1));
+                        "admin@admin.com", 1, Collections.singleton(roleRepository.save(new Role("ROLE_USER")))));
     }
     @PreDestroy
     public void removeData() {

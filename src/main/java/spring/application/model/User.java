@@ -19,7 +19,7 @@ public class User {
     private int age;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roleSet;
@@ -28,11 +28,12 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email, int age) {
+    public User(String username, String password, String email, int age, Set<Role> roles) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.age = age;
+        this.roleSet = roles;
 }
 
     public Long getId() {

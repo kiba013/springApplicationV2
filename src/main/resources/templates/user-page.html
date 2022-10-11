@@ -9,13 +9,13 @@
 <header th:insert="header :: header"></header>
 <main>
     <div class="d-flex justify-content-center pt-1">
-        <div class="w-25 d-flex flex-column flex-shrink-0 bg-light">
+        <div class="col-sm-2 d-flex flex-column flex-shrink-0 bg-light">
             <ul class="nav nav-pills flex-column mb-auto" >
                 <li sec:authorize="hasRole('ADMIN')" ><a th:href="@{/admin}" class="w-100 btn ">Admin</a></li>
                 <li><a th:href="@{/user}" class="w-100 btn btn-info">User</a></li>
             </ul>
         </div>
-        <div class="d-flex flex-column w-75">
+        <div class="d-flex flex-column col-sm-10">
         <h1><label th:text="${user.getUsername()}"></label>
             information-page</h1>
         <div>
