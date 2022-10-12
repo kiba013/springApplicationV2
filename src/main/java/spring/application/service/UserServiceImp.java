@@ -46,13 +46,13 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     @Override
     @Transactional(readOnly = true)
-    public User getUserByName(String username) {
-        return userRepository.findByUsername(username);
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     @Override
     public User saveUser(User user) throws Exception {
-        User username = userRepository.findByUsername(user.getUsername());
+        User username = userRepository.findByEmail(user.getEmail());
         if (username == null) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             return userRepository.save(user);
@@ -78,12 +78,12 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
                 mapRolesToAuthorities(user.getRoleSet()));
     }
 

@@ -24,7 +24,7 @@ public class AdminController {
 
     @GetMapping
     public String getAdminPage(Model model, Principal principal) {
-        User user = userService.getUserByName(principal.getName());
+        User user = userService.getUserByEmail(principal.getName());
         model.addAttribute("users", userService.getAllUser());
         model.addAttribute("currentUser", user);
         model.addAttribute("roles", roleRepository.findAll());

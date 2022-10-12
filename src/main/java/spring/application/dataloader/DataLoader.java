@@ -32,12 +32,12 @@ public class DataLoader {
                         "admin@admin.com", 1, Collections.singleton(roleRepository.save(new Role("ROLE_ADMIN")))));
         userService.saveUser(
                 new User("user", "user",
-                        "admin@admin.com", 1, Collections.singleton(roleRepository.save(new Role("ROLE_USER")))));
+                        "user@user.com", 1, Collections.singleton(roleRepository.save(new Role("ROLE_USER")))));
     }
     @PreDestroy
     public void removeData() {
         roleRepository.deleteAll();
-        userService.deleteUser(userService.getUserByName("admin").getId());
-        userService.deleteUser(userService.getUserByName("user").getId());
+        userService.deleteUser(userService.getUserByEmail("admin@admin.com").getId());
+        userService.deleteUser(userService.getUserByEmail("user@user.com").getId());
     }
 }

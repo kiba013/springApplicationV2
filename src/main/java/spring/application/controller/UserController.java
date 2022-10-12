@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping("/user")
     public String getHomepage(Principal principal, Model model) {
-        User user = userService.getUserByName(principal.getName());
+        User user = userService.getUserByEmail(principal.getName());
         model.addAttribute("user", user);
         model.addAttribute("currentUser", user);
         return "user-page";

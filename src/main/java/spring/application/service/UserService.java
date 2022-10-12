@@ -10,7 +10,7 @@ public interface UserService {
 
     User getUserById(Long id);
 
-    User getUserByName(String username);
+    User getUserByEmail(String username);
 
     User saveUser(User user) throws Exception;
 
